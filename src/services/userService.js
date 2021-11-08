@@ -16,4 +16,4 @@ export default class UserService{
     }
  
     
-}// bu dizine gitsene //hangisine anlayamadım.
+}
