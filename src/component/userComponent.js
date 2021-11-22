@@ -13,8 +13,8 @@ let user2 = new User(2,"Baran","Gökçekli","Muğla")
 userService.add(user1)
 userService.add(user2)
 
-console.log(userService.list())
-console.log(userService.getById(2))
+//console.log(userService.list())
+//console.log(userService.getById(2))
 
 
 
@@ -28,7 +28,14 @@ console.log(customer.lastName)
 
 console.log("--------------------------")
 userService.load()
-userService.add(new Customer(1,"Ahmet","Pınar","Trabzon",23))
+
+
+
+let customerToAdd = new Customer(1,"Ahmet","Pınar","Trabzon",23)
+customerToAdd.type = "customer"
+
+userService.add(customerToAdd )
 console.log(userService.customers)
 console.log(userService.employees)
 console.log(userService.errors)
+console.log(userService.getCustomersSorted())
