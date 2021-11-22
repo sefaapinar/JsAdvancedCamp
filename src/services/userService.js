@@ -60,11 +60,30 @@ export default class UserService {
                     new DataError(`Validation problem. ${field} is required`,user))
             }
         }
+
+        if(Number.isNaN(Number.parseInt(user.age))){
+            hasErrors = true
+            this.errors.push(new DataError(`Validation problem. ${user.age} is not a number`,user))
+        }
         return hasErrors
     }
 
     add(user) {
-        //this.users.push(user)
+        switch (user.type) {
+            case "customers":
+                if(!this.checkCustomerValidityForErrors(user)){
+                    this.customers.push(user)
+                }
+                break;
+            case "employee":
+                if(!this.checkEmployeeValidityForErrors(user)){
+                    this.employees.push(user)
+                }
+                break;
+            default:
+                this.errors.push(new DataError("This user can not be added. Wrong user type",user))
+                break;
+        }
         this.loggerService.log(user)
     }
 
